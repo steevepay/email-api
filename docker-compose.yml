@@ -5,18 +5,6 @@ services:
     build: .
     container_name: ${DOMAIN}
     restart: always
-    expose:
-      - "${PORT}"
+    ports:
+      - "${PORT}:${PORT}"
     command: "npm run start"
-    networks:
-      - default
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:${PORT}"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-networks:
-  default:
-    name: proxy
-    external: true

@@ -11,7 +11,7 @@ const { body, validationResult } = require("express-validator");
 const cors = require("cors");
 
 const md = Markdown();
-const html = md.render(readme.toString().replace('{domain.com}', process.env?.DOMAIN ? process.env.DOMAIN : `localhost:${process.env.PORT}`));
+const html = md.render(readme.toString().replaceAll('{domain.com}', process.env?.DOMAIN ? process.env.DOMAIN : `localhost:${process.env.PORT}`));
 
 // Configure CORS
 var whitelist = process.env?.WHITELIST && process.env?.WHITELIST !== '' ? process.env.WHITELIST?.split(',') : [];
